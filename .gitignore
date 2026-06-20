@@ -8,3 +8,6 @@ __pycache__/
 
 # Database file
 chat_history.db
+
+test_client.py
+test_gemini.py
