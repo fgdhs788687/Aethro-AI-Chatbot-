@@ -8,6 +8,7 @@ pinned: false
 ---
 
 # Aethro AI 🌤️
+🌐 **Live Demo:** [https://faizalrazza-aethro-ai.hf.space](https://faizalrazza-aethro-ai.hf.space)
 
 A full-stack AI chatbot web app built with React and Flask, featuring real-time streaming responses, persistent chat history, and a dynamic day/night sky UI.
 
