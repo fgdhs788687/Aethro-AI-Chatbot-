@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, render_template, Response, stream_with_context
+from flask import Flask, request, jsonify, Response, stream_with_context, send_from_directory
 from database import init_db, save_message, get_all_messages
 from dotenv import load_dotenv
 import requests
@@ -8,7 +8,7 @@ import json
 # Load environment variables from .env file
 load_dotenv()
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder="frontend/dist", static_url_path="")
 init_db()  # Initialize the database when the app starts
 
 # Load the OpenRouter API key from environment variables
@@ -21,7 +21,7 @@ if not OPENROUTER_API_KEY:
 # Define routes for the Flask app
 @app.route("/")
 def home():
-    return render_template("index.html")
+    return send_from_directory(app.static_folder, "index.html")
 
 # Define a route to handle chat messages
 @app.route("/chat", methods=["POST"])
@@ -69,8 +69,9 @@ def chat():
                     continue
 
         save_message("assistant", full_reply)
+        
 
     return Response(stream_with_context(generate()), mimetype="text/event-stream")
 
 if __name__ == "__main__":
-    app.run(debug=True, port=5000)
+    app.run(debug=False, host="0.0.0.0", port=7860)
