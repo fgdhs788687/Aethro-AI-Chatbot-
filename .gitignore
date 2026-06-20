@@ -1,0 +1,10 @@
+# Python
+venv/
+__pycache__/
+*.pyc
+
+# Environment variables - never upload this
+.env
+
+# Database file
+chat_history.db
